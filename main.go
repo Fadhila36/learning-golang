@@ -25,7 +25,10 @@ type Category struct {
 	Description string `json:"description"`
 }
 
-var categories = []Category{}
+var categories = []Category{
+	{ID: 1, Name: "Makanan", Description: "Aneka makanan ringan dan berat"},
+	{ID: 2, Name: "Minuman", Description: "Berbagai jenis minuman menyegarkan"},
+}
 
 var produk = []Produk{
 	{ID: 1, Nama: "Indomie Godog", Harga: 15000, Stok: 10},

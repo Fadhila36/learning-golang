@@ -1,17 +1,29 @@
 package database
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	"log"
 	"time"
 
-	_ "github.com/lib/pq"
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/stdlib"
 )
 
 func InitDB(connectionString string) (*sql.DB, error) {
-	// Open database
-	db, err := sql.Open("postgres", connectionString)
+	// Parse config untuk disable prepared statements (needed for Supabase pooler)
+	config, err := pgx.ParseConfig(connectionString)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse connection string: %w", err)
+	}
+
+	// Disable prepared statements untuk support Supabase transaction pooler
+	config.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
+
+	// Register driver dan open connection
+	connStr := stdlib.RegisterConnConfig(config)
+	db, err := sql.Open("pgx", connStr)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open database: %w", err)
 	}
@@ -22,7 +34,10 @@ func InitDB(connectionString string) (*sql.DB, error) {
 	db.SetConnMaxLifetime(5 * time.Minute)
 
 	// Test connection with timeout
-	err = db.Ping()
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	err = db.PingContext(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to ping database: %w", err)
 	}

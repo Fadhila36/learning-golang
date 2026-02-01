@@ -2,27 +2,46 @@
 
 A simple and lightweight Point of Sales (POS) API Service built with Go. This project is part of the "Bootcamp Golang CodeWithUmam".
 
-## 🚀 Features
+## 🌐 Live Demo
 
-- **Product Management**: Full CRUD operations for products (Indomie Godog, Aqua, etc.).
-- **Category Management**: Full CRUD operations for product categories.
-- **In-Memory Storage**: Uses Go slices for fast, temporary data storage.
-- **Swagger Documentation**: Interactive API documentation using Swagger UI.
-- **Health Check**: Endpoint to verify system status.
-- **Home Dashboard**: Simple HTML landing page with available endpoints.
+� **[https://kasir-app.fadhilaabiyyu.my.id](https://kasir-app.fadhilaabiyyu.my.id)**
+
+## �🚀 Features
+
+- **Product Management**: Full CRUD operations for products with category support
+- **Category Management**: Full CRUD operations for product categories
+- **PostgreSQL Database**: Persistent storage using Supabase
+- **Layered Architecture**: Clean separation (Handler → Service → Repository → Model)
+- **Swagger Documentation**: Interactive API documentation
+- **Health Check**: Endpoint to verify system status
+
+## 🏗️ Architecture
+
+```
+kasir-api/
+├── database/          # Database connection
+├── models/            # Data structures
+├── repositories/      # Database operations
+├── services/          # Business logic
+├── handlers/          # HTTP request handlers
+├── docs/              # Swagger documentation
+├── .env               # Environment config
+└── main.go            # Entry point + DI
+```
 
 ## 🛠️ Tech Stack
 
 - **Language**: Go (Golang) v1.25+
-- **Router**: Standard library `net/http`
-- **Documentation**: [Swaggo](https://github.com/swaggo/swag)
-- **Hot Reload**: [Air](https://github.com/air-verse/air)
+- **Database**: PostgreSQL (Supabase)
+- **Driver**: pgx v5
+- **Config**: Viper
+- **Documentation**: Swaggo
+- **Deployment**: Railway
 
 ## 📋 Prerequisites
 
-Ensure you have the following installed:
-- [Go](https://go.dev/dl/)
-- [Air](https://github.com/air-verse/air) (Optional, for hot reloading)
+- [Go](https://go.dev/dl/) v1.25+
+- [Supabase](https://supabase.com/) account (free tier works)
 
 ## ⚙️ Installation
 
@@ -37,39 +56,49 @@ Ensure you have the following installed:
    go mod tidy
    ```
 
-3. **Generate Swagger Docs (Optional)**
-   If you modify the API annotations, regenerate the docs:
+3. **Setup environment**
    ```bash
-   swag init
+   cp .env.example .env
+   # Edit .env with your Supabase credentials
+   ```
+
+4. **Create database tables** (run in Supabase SQL Editor)
+   ```sql
+   CREATE TABLE categories (
+     id SERIAL PRIMARY KEY,
+     name VARCHAR NOT NULL,
+     description VARCHAR
+   );
+
+   CREATE TABLE products (
+     id SERIAL PRIMARY KEY,
+     name VARCHAR NOT NULL,
+     price INT NOT NULL,
+     stock INT NOT NULL,
+     category_id INT REFERENCES categories(id)
+   );
    ```
 
 ## ▶️ Running the Application
 
-### Standard Run
 ```bash
 go run main.go
 ```
 
-### With Hot Reload (Recommended for Dev)
-```bash
-air
-```
-
-The server will start on `http://localhost:8080`.
+Server will start on `http://localhost:8080`
 
 ## 📖 API Documentation
 
-Once the server is running, you can access the interactive API documentation at:
-
-👉 **[http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)**
+- **Local**: [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html)
+- **Production**: [https://kasir-app.fadhilaabiyyu.my.id/swagger/index.html](https://kasir-app.fadhilaabiyyu.my.id/swagger/index.html)
 
 ## 🔗 Endpoints
 
 ### 📦 Products
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/produk` | Get all products |
-| `GET` | `/api/produk/{id}` | Get product by ID |
+| `GET` | `/api/produk` | Get all products (with category_name) |
+| `GET` | `/api/produk/{id}` | Get product by ID (with category_name) |
 | `POST` | `/api/produk` | Create a new product |
 | `PUT` | `/api/produk/{id}` | Update a product |
 | `DELETE` | `/api/produk/{id}` | Delete a product |
@@ -86,8 +115,19 @@ Once the server is running, you can access the interactive API documentation at:
 ### ⚙️ System
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/` | Home / Dashboard |
+| `GET` | `/` | Home Dashboard |
 | `GET` | `/health` | Health Check |
 
+## 🚀 Deployment
+
+This app is deployed on Railway with auto-deploy from GitHub.
+
+**Environment Variables** (set in Railway):
+```
+PORT=8080
+DB_CONN=postgresql://postgres.[PROJECT_ID]:[PASSWORD]@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres?sslmode=require
+```
+
 ## 📝 License
+
 This project is licensed under the Apache 2.0 License.

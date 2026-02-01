@@ -24,7 +24,7 @@ definitions:
       stock:
         type: integer
     type: object
-host: localhost:8080
+host: kasir-app.fadhilaabiyyu.my.id
 info:
   contact:
     email: support@swagger.io
@@ -296,4 +296,7 @@ paths:
       summary: Update product by ID
       tags:
       - products
+schemes:
+- https
+- http
 swagger: "2.0"

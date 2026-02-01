@@ -1,4 +1,8 @@
 {
+    "schemes": [
+        "https",
+        "http"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "Simple Point of Sales API (Bootcamp Golang)",
@@ -15,7 +19,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "kasir-app.fadhilaabiyyu.my.id",
     "basePath": "/api",
     "paths": {
         "/categories": {

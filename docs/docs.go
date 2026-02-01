@@ -459,9 +459,9 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8080",
+	Host:             "kasir-app.fadhilaabiyyu.my.id",
 	BasePath:         "/api",
-	Schemes:          []string{},
+	Schemes:          []string{"https", "http"},
 	Title:            "Kasir API",
 	Description:      "Simple Point of Sales API (Bootcamp Golang)",
 	InfoInstanceName: "swagger",

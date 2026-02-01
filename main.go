@@ -184,7 +184,8 @@ const homeHTML = `<!DOCTYPE html>
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:8080
+// @host kasir-app.fadhilaabiyyu.my.id
+// @schemes https http
 // @BasePath /api
 func main() {
 	// Load config dengan Viper

@@ -2,11 +2,15 @@ basePath: /api
 definitions:
   models.Category:
     properties:
+      created_at:
+        type: string
       description:
         type: string
       id:
         type: integer
       name:
+        type: string
+      updated_at:
         type: string
     type: object
   models.Product:
@@ -14,6 +18,8 @@ definitions:
       category_id:
         type: integer
       category_name:
+        type: string
+      created_at:
         type: string
       id:
         type: integer
@@ -23,6 +29,8 @@ definitions:
         type: integer
       stock:
         type: integer
+      updated_at:
+        type: string
     type: object
 host: kasir-app.fadhilaabiyyu.my.id
 info:

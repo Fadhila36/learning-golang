@@ -417,6 +417,9 @@
         "models.Category": {
             "type": "object",
             "properties": {
+                "created_at": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -424,6 +427,9 @@
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "updated_at": {
                     "type": "string"
                 }
             }
@@ -437,6 +443,9 @@
                 "category_name": {
                     "type": "string"
                 },
+                "created_at": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "integer"
                 },
@@ -448,6 +457,9 @@
                 },
                 "stock": {
                     "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
                 }
             }
         }

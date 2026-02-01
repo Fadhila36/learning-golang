@@ -419,6 +419,9 @@ const docTemplate = `{
         "models.Category": {
             "type": "object",
             "properties": {
+                "created_at": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -426,6 +429,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "updated_at": {
                     "type": "string"
                 }
             }
@@ -439,6 +445,9 @@ const docTemplate = `{
                 "category_name": {
                     "type": "string"
                 },
+                "created_at": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "integer"
                 },
@@ -450,6 +459,9 @@ const docTemplate = `{
                 },
                 "stock": {
                     "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
                 }
             }
         }

@@ -67,7 +67,9 @@ kasir-api/
    CREATE TABLE categories (
      id SERIAL PRIMARY KEY,
      name VARCHAR NOT NULL,
-     description VARCHAR
+     description VARCHAR,
+     created_at TIMESTAMP DEFAULT NOW(),
+     updated_at TIMESTAMP
    );
 
    CREATE TABLE products (
@@ -75,7 +77,9 @@ kasir-api/
      name VARCHAR NOT NULL,
      price INT NOT NULL,
      stock INT NOT NULL,
-     category_id INT REFERENCES categories(id)
+     category_id INT REFERENCES categories(id),
+     created_at TIMESTAMP DEFAULT NOW(),
+     updated_at TIMESTAMP
    );
    ```
 

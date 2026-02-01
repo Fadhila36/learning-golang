@@ -40,7 +40,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Category"
+                                "$ref": "#/definitions/models.Category"
                             }
                         }
                     }
@@ -65,7 +65,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     }
                 ],
@@ -73,7 +73,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -108,7 +108,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -151,7 +151,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     }
                 ],
@@ -159,7 +159,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -235,7 +235,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Produk"
+                                "$ref": "#/definitions/models.Product"
                             }
                         }
                     }
@@ -260,7 +260,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     }
                 ],
@@ -268,7 +268,7 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -303,7 +303,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -346,7 +346,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     }
                 ],
@@ -354,7 +354,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -416,7 +416,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "main.Category": {
+        "models.Category": {
             "type": "object",
             "properties": {
                 "description": {
@@ -430,19 +430,25 @@ const docTemplate = `{
                 }
             }
         },
-        "main.Produk": {
+        "models.Product": {
             "type": "object",
             "properties": {
-                "harga": {
+                "category_id": {
                     "type": "integer"
+                },
+                "category_name": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "nama": {
+                "name": {
                     "type": "string"
                 },
-                "stok": {
+                "price": {
+                    "type": "integer"
+                },
+                "stock": {
                     "type": "integer"
                 }
             }

@@ -34,7 +34,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Category"
+                                "$ref": "#/definitions/models.Category"
                             }
                         }
                     }
@@ -59,7 +59,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     }
                 ],
@@ -67,7 +67,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -102,7 +102,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -145,7 +145,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     }
                 ],
@@ -153,7 +153,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Category"
+                            "$ref": "#/definitions/models.Category"
                         }
                     },
                     "400": {
@@ -229,7 +229,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/main.Produk"
+                                "$ref": "#/definitions/models.Product"
                             }
                         }
                     }
@@ -254,7 +254,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     }
                 ],
@@ -262,7 +262,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -297,7 +297,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -340,7 +340,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     }
                 ],
@@ -348,7 +348,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Produk"
+                            "$ref": "#/definitions/models.Product"
                         }
                     },
                     "400": {
@@ -410,7 +410,7 @@
         }
     },
     "definitions": {
-        "main.Category": {
+        "models.Category": {
             "type": "object",
             "properties": {
                 "description": {
@@ -424,19 +424,25 @@
                 }
             }
         },
-        "main.Produk": {
+        "models.Product": {
             "type": "object",
             "properties": {
-                "harga": {
+                "category_id": {
                     "type": "integer"
+                },
+                "category_name": {
+                    "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "nama": {
+                "name": {
                     "type": "string"
                 },
-                "stok": {
+                "price": {
+                    "type": "integer"
+                },
+                "stock": {
                     "type": "integer"
                 }
             }

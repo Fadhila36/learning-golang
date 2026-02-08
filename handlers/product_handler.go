@@ -19,9 +19,10 @@ func NewProductHandler(service *services.ProductService) *ProductHandler {
 
 // HandleProducts - GET /api/produk, POST /api/produk
 // @Summary Get all products
-// @Description Get list of all products
+// @Description Get list of all products. Can filter by name using query parameter.
 // @Tags products
 // @Produce json
+// @Param name query string false "Filter products by name (case-insensitive)"
 // @Success 200 {array} models.Product
 // @Router /produk [get]
 func (h *ProductHandler) HandleProducts(w http.ResponseWriter, r *http.Request) {
@@ -36,7 +37,9 @@ func (h *ProductHandler) HandleProducts(w http.ResponseWriter, r *http.Request) 
 }
 
 func (h *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
-	products, err := h.service.GetAll()
+	name := r.URL.Query().Get("name")
+
+	products, err := h.service.GetAll(name)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

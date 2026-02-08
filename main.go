@@ -225,6 +225,14 @@ func main() {
 	categoryService := services.NewCategoryService(categoryRepo)
 	categoryHandler := handlers.NewCategoryHandler(categoryService)
 
+	// Transaction
+	transactionRepo := repositories.NewTransactionRepository(db)
+	transactionService := services.NewTransactionService(transactionRepo)
+	transactionHandler := handlers.NewTransactionHandler(transactionService)
+
+	// Report
+	reportHandler := handlers.NewReportHandler(transactionService)
+
 	// Setup routes - Products
 	http.HandleFunc("/api/produk", productHandler.HandleProducts)
 	http.HandleFunc("/api/produk/", productHandler.HandleProductByID)
@@ -232,6 +240,13 @@ func main() {
 	// Setup routes - Categories
 	http.HandleFunc("/api/categories", categoryHandler.HandleCategories)
 	http.HandleFunc("/api/categories/", categoryHandler.HandleCategoryByID)
+
+	// Setup routes - Checkout
+	http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout)
+
+	// Setup routes - Report
+	http.HandleFunc("/api/report/hari-ini", reportHandler.HandleTodayReport)
+	http.HandleFunc("/api/report", reportHandler.HandleReport)
 
 	// Health check
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
